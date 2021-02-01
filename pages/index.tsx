@@ -1,15 +1,46 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import styled from 'styled-components';
+import db from '../db.json';
+import {Widget,WidgetContent,WidgetHeader} from '../src/components/Widget';
+import QuizLogo from '../src/components/QuizLogo';
+import QuizBackground from '../src/components/QuizBackground';
+import Footer from '../src/components/Footer';
+import GitHubCorner from '../src/components/GitHubCorner';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+export const QuizContainer = styled.div`
+  width: 100%;
+  max-width: 350px;
+  padding-top: 45px;
+  margin: auto 10%;
+  @media screen and (max-width: 500px) {
+    margin: auto;
+    padding: 15px;
+  }
+`;
 
-export default IndexPage
+export default function Home() {
+  return (
+    <QuizBackground backgroundImage={db.bg}>
+      <QuizContainer>
+        <QuizLogo />
+        <Widget>
+          <WidgetHeader>
+            <h1>{db.title}</h1>
+          </WidgetHeader>
+          <WidgetContent>
+            <p>{db.description}</p>
+          </WidgetContent>
+        </Widget>
+
+        <Widget>
+          <WidgetContent>
+            <h1>Quizes da Galera</h1>
+
+            <p>TO DO</p>
+          </WidgetContent>
+        </Widget>
+        <Footer />
+      </QuizContainer>
+      <GitHubCorner projectUrl="https://github.com/WillMuzyka" />
+    </QuizBackground>
+  );
+}
