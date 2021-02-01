@@ -2,6 +2,12 @@ import Head from 'next/head';
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import theme, { ITheme } from '../src/utils/theme';
 import db from '../db.json';
+import { ReactPropTypes } from 'react';
+
+interface IApp extends React.FC {
+  pageProps: ReactPropTypes;
+  Component: any;
+}
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -27,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: IApp) {
   return (
     <>
       <Head>
