@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import theme, { ITheme } from '../src/utils/theme';
 import db from '../db.json';
 
 const GlobalStyle = createGlobalStyle`
@@ -14,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     font-family: 'Lato', sans-serif;
     // Deixa branco no começo
-    color: ${({ theme }) => theme.colors.contrastText};
+    color: ${({ theme }: { theme: ITheme }) => theme.colors.contrastText};
   }
   html, body {
     min-height: 100vh;
@@ -25,8 +26,6 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
   }
 `
-
-const theme = db.theme;
 
 export default function App({ Component, pageProps }) {
   return (
